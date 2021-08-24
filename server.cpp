@@ -51,5 +51,14 @@ int main()
     recv(s_client, send_buf, 4096, 0);
     send(s_client, recv_buf, 4096, 0);
 
+    for (int i = 0; i < 13; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            recv(s_server, buf, size[i], 0);
+            send(s_server, buf, size[i], 0);
+        }
+    }
+
 	return 0;
 }

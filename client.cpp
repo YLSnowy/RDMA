@@ -53,7 +53,8 @@ int main()
         {
             char* send_buf = new char[size[i]];
             start = clock();
-            send(s_server, buf, size[i], 0);
+            int ret = send(s_server, buf, size[i], 0);
+            if(ret )
             recv(s_server, buf, size[i], 0);
             end = clock();
             sum_time += (double)(end - start) / CLOCKS_PER_SEC;
