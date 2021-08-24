@@ -54,8 +54,17 @@ int main()
             char* send_buf = new char[size[i]];
             start = clock();
             int ret = send(s_server, buf, size[i], 0);
-            if(ret )
-            recv(s_server, buf, size[i], 0);
+            if(ret < 0)
+            {
+                cout << "send error" << endl;
+                return 0;
+            }
+            ret = recv(s_server, buf, size[i], 0);
+            if(ret < 0)
+            {
+                cout << "recv error" << endl;
+                return 0;
+            }
             end = clock();
             sum_time += (double)(end - start) / CLOCKS_PER_SEC;
         }
