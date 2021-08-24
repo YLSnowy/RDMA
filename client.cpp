@@ -39,8 +39,8 @@ int main(int argc, char **argv)
     cout << "test rtt" << endl;
     clock_t start, end;
     start = clock();
-    send(s_server, buf, 4096, 0);
-    recv(s_server, buf, 4096, 0);
+    send(s_server, buf, 1, 0);
+    recv(s_server, buf, 1, 0);
     end = clock();
     double rtt = (double)(end - start) / CLOCKS_PER_SEC;
     cout << "rtt = " << rtt << endl;
