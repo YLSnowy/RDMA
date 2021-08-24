@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 #include <cstring>
 #include <arpa/inet.h>
 #include <sys/types.h>
@@ -21,7 +21,7 @@ int main()
 
     ServerAddr.sin_port = htons(1234);
 
-    if (bind(s_server, (struct sockaddr*)&ServerAddr, sizeof(ServerAddr)) < 0)
+    if (bind(s_server, (struct sockaddr *)&ServerAddr, sizeof(ServerAddr)) < 0)
     {
         cout << "bind port error" << endl;
         return -1;
@@ -34,13 +34,13 @@ int main()
 
     // warm-up
     int loop = 10;
-    char* send_buf = new char[4096];
-    char* recv_buf = new char[4096];
+    char *send_buf = new char[4096];
+    char *recv_buf = new char[4096];
     while (loop)
     {
         memset(send_buf, 0, 4096);
         recv(s_client, send_buf, 4096, 0);
-  
+
         memset(recv_buf, 0, 4096);
         send(s_client, recv_buf, 4096, 0);
         cout << "waiting" << endl;
@@ -50,15 +50,15 @@ int main()
     cout << "test rtt" << endl;
     recv(s_client, send_buf, 4096, 0);
     send(s_client, recv_buf, 4096, 0);
-
+    int size[20] = {1, 2, 4, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192};
     for (int i = 0; i < 13; i++)
     {
         for (int j = 0; j < 10; j++)
         {
-            recv(s_server, buf, size[i], 0);
-            send(s_server, buf, size[i], 0);
+            recv(s_server, send_buf, size[i], 0);
+            send(s_server, recv_buf, size[i], 0);
         }
     }
 
-	return 0;
+    return 0;
 }
