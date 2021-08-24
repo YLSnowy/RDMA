@@ -17,7 +17,7 @@ int main()
     struct sockaddr_in serverAddr;
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(1234);
-    inet_pton(AF_INET, "192.168.3.7", &serverAddr.sin_addr);
+    inet_pton(AF_INET, "15.15.15.5", &serverAddr.sin_addr);
 
     if (connect(s_server, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) < 0)
     {
