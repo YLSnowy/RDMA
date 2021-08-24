@@ -70,7 +70,7 @@ int main(int argc, char **argv)
             end = clock();
             sum_time += (double)(end - start) / CLOCKS_PER_SEC;
         }
-        cout << size[i] << "      " << sum_time / 10 * 8 << "     Mbps" << endl;
+        cout << size[i] * 8  << "      " << size[i] * 8 / (sum_time / 10 - rtt) << "     bps" << endl;
     }
     cout << 1234567 << endl;
     return 0;
