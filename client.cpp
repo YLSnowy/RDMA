@@ -47,6 +47,7 @@ int main()
     int size[20] = { 1,2,4,16,32,64,128,256,512, 1024 ,2048,4096,8192 };
     for (int i = 0; i < 13; i++)
     {
+        cout << 8765432 << endl;
         double sum_time = 0;
         for (int j = 0; j < 10; j++)
         {
@@ -59,5 +60,6 @@ int main()
         }
         cout << size[i] <<"      " << sum_time / 10 * 8 << "     Mbps" << endl;
     }
+    cout << 1234567 << endl;
     return 0;
 }
