@@ -55,8 +55,20 @@ int main()
     {
         for (int j = 0; j < 10; j++)
         {
-            recv(s_server, send_buf, size[i], 0);
-            send(s_server, recv_buf, size[i], 0);
+            int ret = recv(s_server, recv_buf, size[i], 0);
+            if(ret < 0)
+            {
+                cout << "recv error" << endl;
+                return 0;
+            }
+            char* send_buf = new char[size[i]];
+            memset(send_buf, 0, sizeof(send_buf));
+            ret = send(s_server, send_buf, size[i], 0);
+            if(ret < 0)
+            {
+                cout << "send error" << endl;
+                return 0;
+            }
         }
     }
 

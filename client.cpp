@@ -52,6 +52,7 @@ int main()
         for (int j = 0; j < 10; j++)
         {
             char* send_buf = new char[size[i]];
+            memset(send_buf, 0, sizeof(send_buf));
             start = clock();
             int ret = send(s_server, buf, size[i], 0);
             if(ret < 0)
