@@ -930,11 +930,12 @@ int main(int argc, char *argv[])
     printf("  local address:  LID 0x%04x, QPN 0x%06x, PSN 0x%06x, GID %s\n",
            my_dest.lid, my_dest.qpn, my_dest.psn, gid);
 
+    printf("+++++++++++++++++++++\n");
     if (servername)
         rem_dest = pp_client_exch_dest(servername, port, &my_dest);
     else
         rem_dest = pp_server_exch_dest(ctx, ib_port, mtu, port, sl, &my_dest, gidx);
-
+    printf("+++++++++++++++++++++\n");
 
     if (!rem_dest)
         return 1;
