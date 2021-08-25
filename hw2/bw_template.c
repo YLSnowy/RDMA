@@ -884,8 +884,8 @@ int main(int argc, char *argv[])
     if (use_event)
         fprintf(stderr, "ibv_req_notify_cq...\n");
     else
-        fprintf("use_event error\n");
-        
+        printf("use_event error\n");
+
     // 在完成队列上请求通知，否则不会告诉你做完了
     if (ibv_req_notify_cq(ctx->cq, 0))
     {
