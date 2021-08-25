@@ -815,7 +815,7 @@ int main(int argc, char *argv[])
     }
 
     printf("optind=%d, argc=%d\n", optind, argc);
-    if (optind == argc - 1)
+    if (optind == argc)
     {
         servername = strdup(argv[optind]);
         printf("servername %s\n", servername);
