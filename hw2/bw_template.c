@@ -208,7 +208,7 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
         .ai_addr = inet_addr("15.15.15.5")};
     char *service;
     char msg[sizeof "0000:000000:000000:00000000000000000000000000000000"];
-    int n;
+    int n = 0;
     int sockfd = -1;
     struct pingpong_dest *rem_dest = NULL;
     char gid[33];
@@ -217,7 +217,6 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
     if (asprintf(&service, "%d", port) < 0)
         return NULL;
 
-    printf("=======================\n");
     // n = getaddrinfo(servername, service, &hints, &res);
 
     if (n < 0)
