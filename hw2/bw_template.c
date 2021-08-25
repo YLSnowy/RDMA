@@ -720,7 +720,6 @@ int main(int argc, char *argv[])
     double secDiff;
 
     srand48(getpid() * time(NULL));
-    printf("optind = %d\n", optind);
 
     while (1)
     {
@@ -738,12 +737,8 @@ int main(int argc, char *argv[])
             {.name = "events", .has_arg = 0, .val = 'e'},
             {.name = "gid-idx", .has_arg = 1, .val = 'g'},
             {0}};
-        
-        printf("optind = %d, argc = %d, argv[%d] = %s\n", optind, argc, optind, argv[optind]);
-        c = getopt_long(argc, argv, "p:d:i:s:m:r:n:l:eg:", long_options, NULL);
 
-        printf("optind = %d, argc = %d, argv[%d] = %s\n", optind, argc, optind, argv[optind]);
-        printf("======\n");
+        c = getopt_long(argc, argv, "p:d:i:s:m:r:n:l:eg:", long_options, NULL);
 
         if (c == -1)
         {
@@ -814,7 +809,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    printf("optind=%d, argc=%d\n", optind, argc);
     if (optind == argc - 1)
     {
         servername = strdup(argv[optind]);
@@ -827,7 +821,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("noservername\n");
+        printf("no servername, maybe need more opts\n");
     }
 
     page_size = sysconf(_SC_PAGESIZE); // Size of a page in bytes:4096
@@ -852,9 +846,15 @@ int main(int argc, char *argv[])
     else
     {
         int i;
+        // 找到对应名字的设备
         for (i = 0; dev_list[i]; ++i)
+        {
             if (!strcmp(ibv_get_device_name(dev_list[i]), ib_devname))
+            {
+                printf("dev_list[%d] name is: ", ib_devname);
                 break;
+            }
+        }
         ib_dev = dev_list[i];
         if (!ib_dev)
         {
@@ -868,7 +868,10 @@ int main(int argc, char *argv[])
 
     ctx = pp_init_ctx(ib_dev, size, rx_depth, tx_depth, ib_port, use_event, !servername);
     if (!ctx)
+    {
+        printf("pp_init_ctx error\n");
         return 1;
+    }
 
     fprintf(stderr, "pp_post_recv...\n");
     ctx->routs = pp_post_recv(ctx, ctx->rx_depth);
@@ -880,6 +883,9 @@ int main(int argc, char *argv[])
 
     if (use_event)
         fprintf(stderr, "ibv_req_notify_cq...\n");
+    else
+        fprintf("use_event error\n");
+        
     // 在完成队列上请求通知，否则不会告诉你做完了
     if (ibv_req_notify_cq(ctx->cq, 0))
     {
