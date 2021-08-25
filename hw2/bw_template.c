@@ -699,6 +699,7 @@ int main(int argc, char *argv[])
         };
 
         c = getopt_long(argc, argv, "p:d:i:s:m:r:n:l:eg:", long_options, NULL);
+        printf("%s", c); 
         if (c == -1)
             break;
 
