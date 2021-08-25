@@ -219,12 +219,14 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
 
     // n = getaddrinfo(servername, service, &hints, &res);
 
-    if (n < 0)
-    {
-        fprintf(stderr, "%s for %s:%d\n", gai_strerror(n), servername, port);
-        free(service);
-        return NULL;
-    }
+    // if (n < 0)
+    // {
+    //     fprintf(stderr, "%s for %s:%d\n", gai_strerror(n), servername, port);
+    //     free(service);
+    //     return NULL;
+    // }
+
+    printf("1=======================\n");
 
     for (t = res; t; t = t->ai_next)
     {
@@ -237,6 +239,8 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
             sockfd = -1;
         }
     }
+
+    printf("2=======================\n");
 
     freeaddrinfo(res);
     free(service);
