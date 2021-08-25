@@ -5,7 +5,7 @@ server:
 	./bw_template.o -d mlx5_0
 
 client:
-	./bw_template.o -d mlx5_0 server
+	./bw_template.o -d mlx5_0 host
 
 clean:
 	rm -rf bw_template.o

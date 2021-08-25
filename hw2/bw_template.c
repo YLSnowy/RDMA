@@ -217,16 +217,16 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
     if (asprintf(&service, "%d", port) < 0)
         return NULL;
 
-    // n = getaddrinfo(servername, service, &hints, &res);
-    *res->ai_addr = inet_addr("15.15.15.5")
-    *res->ai_addrlen = sizeof(*res->ai_addr);
+    n = getaddrinfo(servername, service, &hints, &res);
+    // *res->ai_addr = inet_addr("15.15.15.5")
+    // *res->ai_addrlen = sizeof(*res->ai_addr);
 
-    // if (n < 0)
-    // {
-    //     fprintf(stderr, "%s for %s:%d\n", gai_strerror(n), servername, port);
-    //     free(service);
-    //     return NULL;
-    // }
+    if (n < 0)
+    {
+        fprintf(stderr, "%s for %s:%d\n", gai_strerror(n), servername, port);
+        free(service);
+        return NULL;
+    }
 
     printf("1=======================\n");
 
