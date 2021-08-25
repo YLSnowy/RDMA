@@ -740,7 +740,7 @@ int main(int argc, char *argv[])
 
         c = getopt_long(argc, argv, "p:d:i:s:m:r:n:l:eg:", long_options, NULL);
         
-        printf("optind=%d, argc=%d\n", optind, argc);
+        printf("optind=%d, argc=%d\n, argv[%d]=%s", optind, argc, optind, argv[optind]);
         printf("======\n");
 
         if (c == -1)
