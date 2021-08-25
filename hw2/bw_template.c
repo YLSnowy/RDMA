@@ -945,7 +945,7 @@ int main(int argc, char *argv[])
     printf("+++++++++++++++++++++\n");
     if (servername)
     {
-        printf("87654321\n");
+        printf("servername\n");
         rem_dest = pp_client_exch_dest(servername, port, &my_dest);
     }
     else
