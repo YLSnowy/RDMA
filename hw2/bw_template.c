@@ -298,7 +298,10 @@ static struct pingpong_dest *pp_server_exch_dest(struct pingpong_context *ctx,
     char gid[33];
 
     if (asprintf(&service, "%d", port) < 0)
+    {
+        printf("no port\n");
         return NULL;
+    }
 
     n = getaddrinfo(NULL, service, &hints, &res);
 
@@ -307,6 +310,10 @@ static struct pingpong_dest *pp_server_exch_dest(struct pingpong_context *ctx,
         fprintf(stderr, "%s for port %d\n", gai_strerror(n), port);
         free(service);
         return NULL;
+    }
+    else
+    {
+        printf("port done\n");
     }
 
     for (t = res; t; t = t->ai_next)
@@ -332,6 +339,10 @@ static struct pingpong_dest *pp_server_exch_dest(struct pingpong_context *ctx,
     {
         fprintf(stderr, "Couldn't listen to port %d\n", port);
         return NULL;
+    }
+    else
+    {
+        printf("listening\n");
     }
 
     listen(sockfd, 1);
