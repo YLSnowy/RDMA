@@ -720,7 +720,7 @@ int main(int argc, char *argv[])
     double secDiff;
 
     srand48(getpid() * time(NULL));
-    printf("optind = %d", optind);
+    printf("optind = %d\n", optind);
 
     while (1)
     {
