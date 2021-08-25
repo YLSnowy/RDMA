@@ -713,6 +713,7 @@ int main(int argc, char *argv[])
 
         case 'd':
             ib_devname = strdup(optarg);
+            printf("%s", ib_devname);
             break;
 
         case 'i':
