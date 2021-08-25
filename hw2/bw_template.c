@@ -867,6 +867,7 @@ int main(int argc, char *argv[])
     size = 1 << 30;
     fprintf(stderr, "pp_init_ctx... size = %d, rx_depth %d, tx_depth %d.\n", size, rx_depth, tx_depth);
 
+    // ctx是device context
     ctx = pp_init_ctx(ib_dev, size, rx_depth, tx_depth, ib_port, use_event, !servername);
     if (!ctx)
     {
