@@ -204,7 +204,7 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
     struct addrinfo *res, *t;
     struct addrinfo hints = {
         .ai_family = AF_INET,
-        .ai_socktype = SOCK_STREAM
+        .ai_socktype = SOCK_STREAM,
         .ai_addr = inet_addr("15.15.15.5")};
     char *service;
     char msg[sizeof "0000:000000:000000:00000000000000000000000000000000"];
