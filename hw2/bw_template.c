@@ -833,6 +833,10 @@ int main(int argc, char *argv[])
         perror("Failed to get IB devices list");
         return 1;
     }
+    else
+    {
+        printf("device[0] name is %s\n", ibv_get_device_name(dev_list[0]));
+    }
 
     // 可以通过-d赋值，否则就是NULL
     if (!ib_devname)
@@ -916,6 +920,7 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Couldn't get local LID\n");
         return 1;
     }
+
 
     if (gidx >= 0)
     {
