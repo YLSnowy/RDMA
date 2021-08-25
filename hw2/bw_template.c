@@ -217,6 +217,7 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
     if (asprintf(&service, "%d", port) < 0)
         return NULL;
 
+    printf("=======================\n");
     // n = getaddrinfo(servername, service, &hints, &res);
 
     if (n < 0)
@@ -299,10 +300,8 @@ static struct pingpong_dest *pp_server_exch_dest(struct pingpong_context *ctx,
 
     if (asprintf(&service, "%d", port) < 0)
     {
-        printf("no port\n");
         return NULL;
     }
- printf("====================\n");
     n = getaddrinfo(NULL, service, &hints, &res);
    
 
@@ -311,10 +310,6 @@ static struct pingpong_dest *pp_server_exch_dest(struct pingpong_context *ctx,
         fprintf(stderr, "%s for port %d\n", gai_strerror(n), port);
         free(service);
         return NULL;
-    }
-    else
-    {
-        printf("port done\n");
     }
 
     for (t = res; t; t = t->ai_next)
@@ -942,15 +937,13 @@ int main(int argc, char *argv[])
     printf("  local address:  LID 0x%04x, QPN 0x%06x, PSN 0x%06x, GID %s\n",
            my_dest.lid, my_dest.qpn, my_dest.psn, gid);
 
-    printf("+++++++++++++++++++++\n");
     if (servername)
     {
-        printf("servername is %s\n", servername);
+        printf("1232345678\n");
         rem_dest = pp_client_exch_dest(servername, port, &my_dest);
     }
     else
     {
-        printf("1231234324\n");
         rem_dest = pp_server_exch_dest(ctx, ib_port, mtu, port, sl, &my_dest, gidx);
     }
     printf("+++++++++++++++++++++\n");
