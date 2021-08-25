@@ -758,7 +758,6 @@ int main(int argc, char *argv[])
 
         case 'd':
             ib_devname = strdup(optarg);
-            printf("%s\n", ib_devname);
             break;
 
         case 'i':
@@ -936,6 +935,8 @@ int main(int argc, char *argv[])
     else
         rem_dest = pp_server_exch_dest(ctx, ib_port, mtu, port, sl, &my_dest, gidx);
 
+    printf("===========\n");
+    
     if (!rem_dest)
         return 1;
 
