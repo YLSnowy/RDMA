@@ -705,7 +705,7 @@ int main(int argc, char *argv[])
     struct pingpong_dest *rem_dest;
     char *ib_devname = NULL;
     char *servername;
-    int port = 12345;
+    int port = 1234;
     int ib_port = 1;
     enum ibv_mtu mtu = IBV_MTU_2048;
     int rx_depth = 100;
@@ -936,7 +936,7 @@ int main(int argc, char *argv[])
         rem_dest = pp_server_exch_dest(ctx, ib_port, mtu, port, sl, &my_dest, gidx);
 
     printf("===========\n");
-    
+
     if (!rem_dest)
         return 1;
 
