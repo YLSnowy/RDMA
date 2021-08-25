@@ -889,8 +889,6 @@ int main(int argc, char *argv[])
 
     if (use_event)
         fprintf(stderr, "ibv_req_notify_cq...\n");
-    // else
-    //     printf("use_event error\n");
 
     // 在完成队列上请求通知，否则不会告诉你做完了
     if (ibv_req_notify_cq(ctx->cq, 0))
@@ -898,20 +896,12 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Couldn't request CQ notification\n");
         return 1;
     }
-    // else
-    // {
-    //     printf("request CQ notification done\n");
-    // }
 
     if (pp_get_port_info(ctx->context, ib_port, &ctx->portinfo))
     {
         fprintf(stderr, "Couldn't get port info\n");
         return 1;
     }
-    // else
-    // {
-    //     printf("get port info done\n");
-    // }
 
     // GID是全局唯一的，LID是本地的
     my_dest.lid = ctx->portinfo.lid;
@@ -920,11 +910,6 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Couldn't get local LID\n");
         return 1;
     }
-    else
-    {
-        printf("get local LID done\n");
-    }
-
 
     if (gidx >= 0)
     {
@@ -936,7 +921,6 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("get local gid done\n");
         memset(&my_dest.gid, 0, sizeof my_dest.gid);
     }
 
