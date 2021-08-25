@@ -739,7 +739,10 @@ int main(int argc, char *argv[])
             {0}};
 
         c = getopt_long(argc, argv, "p:d:i:s:m:r:n:l:eg:", long_options, NULL);
+        
         printf("optind=%d, argc=%d\n", optind, argc);
+        printf("======\n");
+
         if (c == -1)
         {
             break;
@@ -758,7 +761,7 @@ int main(int argc, char *argv[])
 
         case 'd':
             ib_devname = strdup(optarg);
-            // printf("%s", ib_devname);
+            printf("%s\n", ib_devname);
             break;
 
         case 'i':
