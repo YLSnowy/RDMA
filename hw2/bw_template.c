@@ -851,7 +851,7 @@ int main(int argc, char *argv[])
         {
             if (!strcmp(ibv_get_device_name(dev_list[i]), ib_devname))
             {
-                printf("dev_list[%d] name is: %s\n", ib_devname);
+                printf("dev_list[%d] name is: %s\n", i, ib_devname);
                 break;
             }
         }
