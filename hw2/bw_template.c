@@ -833,7 +833,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("no servername, maybe client");
+        printf("no servername, maybe server\n");
     }
 
     page_size = sysconf(_SC_PAGESIZE); // Size of a page in bytes:4096
@@ -944,7 +944,10 @@ int main(int argc, char *argv[])
 
     printf("+++++++++++++++++++++\n");
     if (servername)
+    {
+        printf("87654321\n");
         rem_dest = pp_client_exch_dest(servername, port, &my_dest);
+    }
     else
     {
         printf("1231234324\n");
