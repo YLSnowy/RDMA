@@ -812,7 +812,7 @@ int main(int argc, char *argv[])
     if (optind == argc - 1)
     {
         servername = strdup(argv[optind]);
-        printf("servername %s\n", servername);
+        printf("servername is %s\n", servername);
     }
     else if (optind < argc)
     {
@@ -821,6 +821,7 @@ int main(int argc, char *argv[])
     }
     else
     {
+        printf("optind = %d, argc = %d\n", optind, argc);
         printf("no servername, maybe need more opts\n");
     }
 
