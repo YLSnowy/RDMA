@@ -1,7 +1,10 @@
 compile:
 	gcc bw_template.c -o bw_template.o -libverbs
-	
-run:
+
+server:
+	./bw_template.o -d mlx5_0
+
+client:
 	./bw_template.o -d mlx5_0 server
 
 clean:

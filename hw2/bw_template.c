@@ -204,7 +204,8 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
     struct addrinfo *res, *t;
     struct addrinfo hints = {
         .ai_family = AF_INET,
-        .ai_socktype = SOCK_STREAM};
+        .ai_socktype = SOCK_STREAM
+        .ai_addr.sin_addr = inet_addr("15.15.15.5")};
     char *service;
     char msg[sizeof "0000:000000:000000:00000000000000000000000000000000"];
     int n;
@@ -820,8 +821,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("optind = %d, argc = %d\n", optind, argc);
-        printf("no servername, maybe need more opts\n");
+        printf("no servername, maybe client");
     }
 
     page_size = sysconf(_SC_PAGESIZE); // Size of a page in bytes:4096
@@ -935,7 +935,6 @@ int main(int argc, char *argv[])
     else
         rem_dest = pp_server_exch_dest(ctx, ib_port, mtu, port, sl, &my_dest, gidx);
 
-    printf("===========\n");
 
     if (!rem_dest)
         return 1;
