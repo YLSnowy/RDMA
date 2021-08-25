@@ -302,9 +302,9 @@ static struct pingpong_dest *pp_server_exch_dest(struct pingpong_context *ctx,
         printf("no port\n");
         return NULL;
     }
-
+ printf("====================\n");
     n = getaddrinfo(NULL, service, &hints, &res);
-    printf("====================\n");
+   
 
     if (n < 0)
     {
