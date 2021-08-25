@@ -894,11 +894,19 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Couldn't request CQ notification\n");
         return 1;
     }
+    else
+    {
+        printf("request CQ notification done\n");
+    }
 
     if (pp_get_port_info(ctx->context, ib_port, &ctx->portinfo))
     {
         fprintf(stderr, "Couldn't get port info\n");
         return 1;
+    }
+    else
+    {
+        printf("get port info done\n");
     }
 
     // GID是全局唯一的，LID是本地的
