@@ -304,6 +304,7 @@ static struct pingpong_dest *pp_server_exch_dest(struct pingpong_context *ctx,
     }
 
     n = getaddrinfo(NULL, service, &hints, &res);
+    printf("====================\n");
 
     if (n < 0)
     {
