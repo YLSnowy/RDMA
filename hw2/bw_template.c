@@ -738,10 +738,11 @@ int main(int argc, char *argv[])
             {.name = "events", .has_arg = 0, .val = 'e'},
             {.name = "gid-idx", .has_arg = 1, .val = 'g'},
             {0}};
-
-        c = getopt_long(argc, argv, "p:d:i:s:m:r:n:l:eg:", long_options, NULL);
         
-        printf("optind = %d, argc = %d, argv[%d] = %s", optind, argc, optind, argv[optind]);
+        printf("optind = %d, argc = %d, argv[%d] = %s\n", optind, argc, optind, argv[optind]);
+        c = getopt_long(argc, argv, "p:d:i:s:m:r:n:l:eg:", long_options, NULL);
+
+        printf("optind = %d, argc = %d, argv[%d] = %s\n", optind, argc, optind, argv[optind]);
         printf("======\n");
 
         if (c == -1)
