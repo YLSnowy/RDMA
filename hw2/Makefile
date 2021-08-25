@@ -1,5 +1,5 @@
 compile:
-	gcc bw_template.c -o bw_template.o -libverbs -pthread -lrdmacm
+	gcc template.c -o bw_template.o -libverbs -pthread -lrdmacm
 
 run:
 	./bw_template.o -d server
