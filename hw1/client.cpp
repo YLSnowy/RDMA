@@ -9,6 +9,7 @@
 #include <netinet/tcp.h>
 #include <sys/timeb.h>
 #include <sys/time.h>
+#include <iomanip>
 using namespace std;
 
 int main(int argc, char **argv)
@@ -48,7 +49,6 @@ int main(int argc, char **argv)
     int size[20] = {1, 2, 4, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192};
     for (int i = 0; i < 13; i++)
     {
-        cout << 8765432 << endl;
         double sum_time = 0;
         for (int j = 0; j < 10; j++)
         {
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
             end = clock();
             sum_time += (double)(end - start) / CLOCKS_PER_SEC;
         }
-        cout << size[i] * 8  << "      " << (size[i] * 8 / (sum_time / 10 )) / 1e8 << "     Mbps" << endl;
+        cout << size[i] * 8 << setw(10) << (size[i] * 8 / (sum_time / 10)) / 1e8 << setw(5) << "Mbps" << endl;
     }
     cout << 1234567 << endl;
     return 0;

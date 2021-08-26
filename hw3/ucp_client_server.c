@@ -272,9 +272,7 @@ static int send_recv_stream(ucp_worker_h ucp_worker, ucp_ep_h ep, int is_server,
             int i;
             struct timeval tv_begin, tv_end;
             need_length = EVERY_SEND_LEN;
-            /* Warm Up */
             for (i = 0; i < TEST_BUFFER_LEN / EVERY_SEND_LEN; ++i){
-                /* Client sends a message to the server using the stream API */
                 request = ucp_stream_send_nb(ep, test_message + i * EVERY_SEND_LEN, 1,
                                             ucp_dt_make_contig(need_length),
                                             send_cb, 0);
@@ -282,7 +280,6 @@ static int send_recv_stream(ucp_worker_h ucp_worker, ucp_ep_h ep, int is_server,
                                 iterations);
                 if (err) return err;
             }
-            /* Get RTT */
             gettimeofday(&tv_begin, NULL);
             request = ucp_stream_send_nb(ep, test_message, 1,
                     ucp_dt_make_contig(1),
@@ -300,10 +297,8 @@ static int send_recv_stream(ucp_worker_h ucp_worker, ucp_ep_h ep, int is_server,
             gettimeofday(&tv_end, NULL);
             long RTT = (tv_end.tv_sec - tv_begin.tv_sec) * 1000000 + (tv_end.tv_usec - tv_begin.tv_usec);
 
-            /* Begin */
             gettimeofday(&tv_begin, NULL);
             for (i = 0; i < TEST_BUFFER_LEN / EVERY_SEND_LEN; ++i){
-                /* Client sends a message to the server using the stream API */
                 request = ucp_stream_send_nb(ep, test_message + i * EVERY_SEND_LEN, 1,
                                             ucp_dt_make_contig(need_length),
                                             send_cb, 0);
@@ -331,7 +326,6 @@ static int send_recv_stream(ucp_worker_h ucp_worker, ucp_ep_h ep, int is_server,
             RECEIVED_BUFFER_SIZE = 0;
             while (RECEIVED_BUFFER_SIZE < TEST_BUFFER_LEN){
                 need_length = TEST_BUFFER_LEN - RECEIVED_BUFFER_SIZE;
-                /* Server receives a message from the client using the stream API */
                 request = ucp_stream_recv_nb(ep, recv_message + RECEIVED_BUFFER_SIZE, 1,
                                             ucp_dt_make_contig(need_length),
                                             stream_recv_cb, &length,
@@ -343,7 +337,6 @@ static int send_recv_stream(ucp_worker_h ucp_worker, ucp_ep_h ep, int is_server,
                 RECEIVED_THIS = 0;
             }
             if (recv_message[0] != CHECKER) return -1;
-            /* Get RTT */
             request = ucp_stream_recv_nb(ep, recv_message + RECEIVED_BUFFER_SIZE, 1,
                     ucp_dt_make_contig(1),
                     stream_recv_cb, &length,
@@ -360,11 +353,9 @@ static int send_recv_stream(ucp_worker_h ucp_worker, ucp_ep_h ep, int is_server,
     
             if (err) return err;
 
-            /* Begin */
             RECEIVED_BUFFER_SIZE = 0;
             while (RECEIVED_BUFFER_SIZE < TEST_BUFFER_LEN){
                 need_length = TEST_BUFFER_LEN - RECEIVED_BUFFER_SIZE;
-                /* Server receives a message from the client using the stream API */
                 request = ucp_stream_recv_nb(ep, recv_message + RECEIVED_BUFFER_SIZE, 1,
                                             ucp_dt_make_contig(need_length),
                                             stream_recv_cb, &length,
