@@ -70,7 +70,7 @@ int main(int argc, char **argv)
             end = clock();
             sum_time += (double)(end - start) / CLOCKS_PER_SEC;
         }
-        cout << size[i] * 8 << std::right << setw(10) << (size[i] * 8 / (sum_time / 10)) / 1e8 << std::right << setw(5) << "Mbps" << endl;
+        cout << size[i] * 8 << setiosflags(std::right) << setw(10) << (size[i] * 8 / (sum_time / 10)) / 1e8 << setiosflags(std::right) << setw(5) << "Mbps" << endl;
     }
     cout << 1234567 << endl;
     return 0;
