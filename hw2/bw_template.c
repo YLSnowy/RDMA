@@ -217,26 +217,26 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
     if (asprintf(&service, "%d", port) < 0)
         return NULL;
 
-    // n = getaddrinfo(servername, service, &hints, &res);
-    res->ai_addr = inet_addr("15.15.15.5");
-    res->ai_family = AF_INET;
-    res->ai_socktype =  SOCK_STREAM;
-    // res->ai_protocol = 
-    // res->ai_addrlen = NULL;
+    n = getaddrinfo(servername, service, &hints, &res);
+    // res->ai_addr = inet_addr("15.15.15.5");
+    // res->ai_family = AF_INET;
+    // res->ai_socktype =  SOCK_STREAM;
+    // // res->ai_protocol = 
+    // // res->ai_addrlen = NULL;
 
-    // if (n < 0)
-    // {
-    //     fprintf(stderr, "%s for %s:%d\n", gai_strerror(n), servername, port);
-    //     free(service);
-    //     return NULL;
-    // }
+    if (n < 0)
+    {
+        fprintf(stderr, "%s for %s:%d\n", gai_strerror(n), servername, port);
+        free(service);
+        return NULL;
+    }
 
-    printf("1=======================\n");
+    // printf("1=======================\n");
 
     for (t = res; t; t = t->ai_next)
     {
         sockfd = socket(t->ai_family, t->ai_socktype, t->ai_protocol);
-        printf("876543213456789\n");
+        // printf("876543213456789\n");
         if (sockfd >= 0)
         {
             if (!connect(sockfd, t->ai_addr, t->ai_addrlen))
@@ -246,7 +246,7 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
         }
     }
 
-    printf("2=======================\n");
+    // printf("2=======================\n");
 
     freeaddrinfo(res);
     free(service);
@@ -259,21 +259,18 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
 
     gid_to_wire_gid(&my_dest->gid, gid);
     sprintf(msg, "%04x:%06x:%06x:%s", my_dest->lid, my_dest->qpn, my_dest->psn, gid);
-    //fprintf(stderr, "[debug]\tmsg: %d, sizeof msg: %d\n", msg, sizeof msg);
     if (write(sockfd, msg, sizeof msg) != sizeof msg)
     {
         fprintf(stderr, "Couldn't send local address\n");
         goto out;
     }
 
-    //fprintf(stderr, "[debug]\tmsg: %d, sizeof msg: %d\n", msg, sizeof msg);
     while ((debug_res = read(sockfd, msg, sizeof msg)) != sizeof msg)
     {
         perror("client read");
         fprintf(stderr, "Couldn't read remote address. read %d, sizeof msg %d.\n", debug_res, sizeof msg);
         goto out;
     }
-    //fprintf(stderr, "[debug]\tmsg read done: %s\n", msg);
 
     write(sockfd, "done", sizeof "done");
 
@@ -848,10 +845,10 @@ int main(int argc, char *argv[])
         perror("Failed to get IB devices list");
         return 1;
     }
-    // else
-    // {
-    //     printf("device[0] name is %s\n", ibv_get_device_name(dev_list[0]));
-    // }
+    else
+    {
+        printf("device[0] name is %s\n", ibv_get_device_name(dev_list[0]));
+    }
 
     // 可以通过-d赋值，否则就是NULL
     if (!ib_devname)
