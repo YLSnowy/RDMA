@@ -1,10 +1,10 @@
 ## run method
 # server:
-    make server
-    ./server
+    make all
+    ./ucp_client_server
 # client
     make client
-    ./client server.ipaddress
+    ./ucp_client_server server.ipaddress
 
 
 ## result
