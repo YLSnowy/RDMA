@@ -218,8 +218,8 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
         return NULL;
 
     n = getaddrinfo(servername, service, &hints, &res);
-    // *res->ai_addr = inet_addr("15.15.15.5")
-    // *res->ai_addrlen = sizeof(*res->ai_addr);
+    res.ai_addr = inet_addr("15.15.15.5")
+    res.ai_addrlen = NULL;
 
     if (n < 0)
     {
@@ -944,14 +944,14 @@ int main(int argc, char *argv[])
 
     if (servername)
     {
-        printf("1232345678\n");
+        printf("client\n");
         rem_dest = pp_client_exch_dest(servername, port, &my_dest);
     }
     else
     {
+        printf("server\n");
         rem_dest = pp_server_exch_dest(ctx, ib_port, mtu, port, sl, &my_dest, gidx);
     }
-    printf("+++++++++++++++++++++\n");
 
     if (!rem_dest)
         return 1;
@@ -964,8 +964,8 @@ int main(int argc, char *argv[])
         if (pp_connect_ctx(ctx, ib_port, my_dest.psn, mtu, sl, rem_dest, gidx))
             return 1;
 
-    /* Here we warm up. */
-    fprintf(stderr, "Warm up..\n");
+
+    printf("Warm up ing\n");
     if (servername)
     {
         pp_post_send(ctx, 0);
