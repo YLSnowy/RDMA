@@ -219,8 +219,8 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
 
     printf("12345678965432\n");
     // n = getaddrinfo(servername, service, &hints, &res);
-    *res->ai_addr = inet_addr("15.15.15.5");
-    *res->ai_addrlen = NULL;
+    res->ai_addr = inet_addr("15.15.15.5");
+    // res->ai_addrlen = NULL;
 
     // if (n < 0)
     // {
