@@ -201,6 +201,7 @@ static int pp_connect_ctx(struct pingpong_context *ctx, int port, int my_psn,
 static struct pingpong_dest *pp_client_exch_dest(const char *servername, int port,
                                                  const struct pingpong_dest *my_dest)
 {
+    printf("2134567897654321\n");
     struct addrinfo *res, *t;
     struct addrinfo hints = {
         .ai_family = AF_INET,
