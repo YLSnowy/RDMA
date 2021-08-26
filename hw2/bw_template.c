@@ -217,9 +217,11 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
     if (asprintf(&service, "%d", port) < 0)
         return NULL;
 
-    printf("12345678965432\n");
     // n = getaddrinfo(servername, service, &hints, &res);
     res->ai_addr = inet_addr("15.15.15.5");
+    res->ai_family = AF_INET;
+    res->ai_socktype =  SOCK_STREAM;
+    // res->ai_protocol = 
     // res->ai_addrlen = NULL;
 
     // if (n < 0)
@@ -234,6 +236,7 @@ static struct pingpong_dest *pp_client_exch_dest(const char *servername, int por
     for (t = res; t; t = t->ai_next)
     {
         sockfd = socket(t->ai_family, t->ai_socktype, t->ai_protocol);
+        printf("876543213456789\n");
         if (sockfd >= 0)
         {
             if (!connect(sockfd, t->ai_addr, t->ai_addrlen))
